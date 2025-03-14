@@ -1,0 +1,22 @@
+* SPICE3 file created from /home/berkan/Desktop/integrated/inverter.ext - technology: scmos
+.model nfet nmos level=49 version=3.3.0
+.model pfet pmos level=49 version=3.3.0
+.option scale=0.12u
+
+M1000 out in vdd vdd pfet w=4 l=2
++  ad=42 pd=26 as=30 ps=22
+M1001 out in gnd gnd nfet w=4 l=2
++  ad=42 pd=26 as=68 ps=56
+C0 in gnd 0.06fF
+C1 out gnd 0.06fF
+
+Vdd vdd 0 2.5V
+Vin in gnd pulse(0 2.5 20NS 0.001NS 0.001NS  20NS 40NS)
+
+.tran  1NS 200NS
+.controll
+run
+plot in out vdd 
+
+.endc
+.end

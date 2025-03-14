@@ -1,0 +1,88 @@
+magic
+tech scmos
+timestamp 1702491883
+<< nsubstratencontact >>
+rect 434 -443 439 112
+<< metal1 >>
+rect 299 118 439 122
+rect 434 112 439 118
+rect -34 108 8 112
+rect -38 83 -17 84
+rect -28 77 8 83
+rect -28 76 -17 77
+rect -48 64 6 70
+rect 311 69 384 75
+rect 308 68 384 69
+rect -50 21 8 27
+rect 299 -77 434 -73
+rect -52 -88 6 -83
+rect -20 -118 6 -112
+rect -20 -119 -7 -118
+rect -19 -376 -10 -119
+rect -3 -131 4 -125
+rect 312 -126 342 -120
+rect 328 -286 434 -282
+rect 14 -296 36 -292
+rect 13 -327 33 -321
+rect 25 -340 32 -334
+rect 339 -335 368 -329
+rect -19 -377 11 -376
+rect -19 -383 40 -377
+rect 434 -461 439 -443
+rect 363 -465 439 -461
+rect 45 -475 72 -471
+rect 71 -499 86 -498
+rect 42 -500 86 -499
+rect 42 -506 72 -500
+rect 42 -520 69 -512
+rect 376 -514 406 -508
+rect 13 -562 75 -556
+<< m2contact >>
+rect -38 76 -28 83
+rect -5 -174 8 -168
+rect 4 -327 13 -321
+rect 3 -562 13 -556
+<< metal2 >>
+rect -28 76 -27 83
+rect -38 -167 -27 76
+rect -38 -168 0 -167
+rect -38 -174 -5 -168
+rect -38 -175 0 -174
+rect -38 -176 -27 -175
+rect 3 -327 4 -321
+rect 3 -556 13 -327
+use berkan_full_adder  berkan_full_adder_0
+timestamp 1702426510
+transform 1 0 132 0 1 97
+box -132 -97 190 31
+use berkan_full_adder  berkan_full_adder_1
+timestamp 1702426510
+transform 1 0 132 0 1 -98
+box -132 -97 190 31
+use berkan_full_adder  berkan_full_adder_2
+timestamp 1702426510
+transform 1 0 159 0 1 -307
+box -132 -97 190 31
+use berkan_full_adder  berkan_full_adder_3
+timestamp 1702426510
+transform 1 0 197 0 1 -486
+box -132 -97 190 31
+<< labels >>
+rlabel metal1 -33 109 -33 109 1 A1
+rlabel metal1 -46 67 -46 67 1 B1
+rlabel metal1 -47 23 -47 23 3 C1
+rlabel metal1 -51 -86 -51 -86 3 A2
+rlabel metal1 -1 -128 -1 -128 1 B2
+rlabel space 10 -171 10 -171 1 C2
+rlabel metal1 17 -294 17 -294 1 A3
+rlabel metal1 28 -338 28 -338 1 B3
+rlabel metal1 25 -380 25 -380 1 C3
+rlabel metal1 27 -560 27 -560 1 C4
+rlabel metal1 57 -516 57 -516 1 B4
+rlabel metal1 50 -473 50 -473 1 A4
+rlabel metal1 401 -512 401 -512 7 Sum4
+rlabel metal1 365 -332 365 -332 1 Sum3
+rlabel metal1 339 -123 339 -123 1 Sum2
+rlabel metal1 371 71 371 71 1 Sum1
+rlabel nsubstratencontact 436 -66 436 -66 7 Vddbig
+<< end >>

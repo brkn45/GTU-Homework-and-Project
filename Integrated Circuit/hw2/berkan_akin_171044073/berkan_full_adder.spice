@@ -1,0 +1,127 @@
+* SPICE3 file created from /home/berkan/Desktop/integ/berkan_full_adder.ext - technology: scmos
+
+.option scale=0.12u
+
+.model nfet NMOS (Level=1 Vto=0.7 Kp=120u W=10u L=2u Lambda=0.01)
+.model pfet PMOS (Level=1 Vto=-0.7 Kp=40u W=10u L=2u Lambda=0.02)
+
+M1000 a_40_1# A Vdd Vdd pfet w=7 l=3
++  ad=182 pd=80 as=490 ps=224
+M1001 a_108_1# A a_85_n65# Vdd pfet w=7 l=3
++  ad=84 pd=38 as=140 ps=54
+M1002 Gnd B a_40_n65# Gnd nfet w=9 l=3
++  ad=1053 pd=342 as=234 ps=88
+M1003 a_6_1# A a_n103_n70# Vdd pfet w=7 l=3
++  ad=91 pd=40 as=203 ps=72
+M1004 a_85_n65# a_n103_n70# a_40_1# Vdd pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+** SOURCE/DRAIN TIED
+M1005 Gnd A Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1006 a_40_n65# A Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1007 Gnd B a_6_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=117 ps=44
+M1008 Sum a_85_n65# Vdd Vdd pfet w=7 l=3
++  ad=119 pd=48 as=0 ps=0
+M1009 a_n103_n70# C Gnd Gnd nfet w=9 l=3
++  ad=261 pd=76 as=0 ps=0
+M1010 Vdd A a_n88_1# Vdd pfet w=7 l=3
++  ad=0 pd=0 as=280 ps=108
+M1011 a_n103_n70# C a_n88_1# Vdd pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1012 Gnd a_n103_n70# Cout Gnd nfet w=9 l=3
++  ad=0 pd=0 as=135 ps=48
+M1013 a_123_n65# B a_108_n65# Gnd nfet w=9 l=3
++  ad=72 pd=34 as=108 ps=42
+M1014 a_6_n65# A a_n103_n70# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1015 a_123_1# B a_108_1# Vdd pfet w=7 l=3
++  ad=56 pd=30 as=0 ps=0
+M1016 Vdd B a_6_1# Vdd pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1017 Vdd B a_40_1# Vdd pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1018 a_108_n65# A a_85_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=180 ps=58
+** SOURCE/DRAIN TIED
+M1019 Gnd B Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1020 Vdd a_n103_n70# Cout Vdd pfet w=7 l=3
++  ad=0 pd=0 as=126 ps=50
+M1021 a_40_1# C Vdd Vdd pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1022 Vdd C a_123_1# Vdd pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1023 Gnd C a_123_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1024 a_n88_1# B Vdd Vdd pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1025 Sum a_85_n65# Gnd Gnd nfet w=9 l=3
++  ad=207 pd=64 as=0 ps=0
+M1026 a_85_n65# a_n103_n70# a_40_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1027 a_40_n65# C Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+C0 Vdd Cout 0.04fF
+C1 B a_n88_1# 0.03fF
+C2 B a_n103_n70# 1.78fF
+C3 B a_40_n65# 0.04fF
+C4 C a_85_n65# 0.04fF
+C5 A Gnd 0.03fF
+C6 a_n103_n70# Cout 0.05fF
+C7 C a_123_n65# 0.05fF
+C8 B a_6_n65# 0.05fF
+C9 C a_40_1# 0.04fF
+C10 C Vdd 0.44fF
+C11 B Gnd 0.03fF
+C12 C A 0.12fF
+C13 Vdd a_85_n65# 0.18fF
+C14 B C 3.89fF
+C15 A a_85_n65# 0.69fF
+C16 Vdd a_40_1# 0.26fF
+C17 Gnd a_40_n65# 0.10fF
+C18 C a_n103_n70# 0.17fF
+C19 A a_40_1# 0.63fF
+C20 B a_85_n65# 0.62fF
+C21 A Vdd 1.19fF
+C22 B a_108_n65# 0.05fF
+C23 a_n103_n70# a_85_n65# 0.03fF
+C24 C a_40_n65# 0.56fF
+C25 B a_40_1# 0.04fF
+C26 B Vdd 0.57fF
+C27 Sum a_85_n65# 0.04fF
+C28 C a_6_n65# 0.03fF
+C29 B A 0.18fF
+C30 a_n88_1# Vdd 0.26fF
+C31 Vdd a_n103_n70# 0.34fF
+C32 C Gnd 0.76fF
+C33 a_n88_1# A 0.50fF
+C34 A a_n103_n70# 1.64fF
+C35 Vdd Sum 0.04fF
+C36 a_40_n65# Gnd 0.15fF
+C37 Gnd Gnd 0.37fF
+C38 Sum Gnd 0.40fF
+C39 Cout Gnd 0.38fF
+C40 a_85_n65# Gnd 1.41fF
+C41 C Gnd 3.86fF
+C42 B Gnd 4.51fF
+C43 A Gnd 3.64fF
+C44 a_n103_n70# Gnd 0.80fF
+C45 Vdd Gnd 10.08fF
+
+VDD VDD 0 DC 5
+
+
+VA A 0 5
+VB B 0 5
+VC C 0 5
+
+
+.tran  1NS 200NS
+.controll
+run
+plot V(A) V(B) V(C) V(Sum) V(Cout)
+
+.endc
+.end

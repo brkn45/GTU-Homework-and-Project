@@ -1,0 +1,146 @@
+
+
+1. Triger
+INSERT INTO `basket` (USERID, ITEMCOUNT, TOTALPRICE, STATUS_) VALUES (1, 5, 100.00, 1);
+
+Bu SQL komutu, "basket" tablosuna yeni bir kayıt eklemektedir. Kullanıcı kimliği (USERID), ürün sayısı (ITEMCOUNT), toplam fiyat (TOTALPRICE) ve durum (STATUS_) alanlarına değerler atanmıştır. Tetikleyici, bu kaydın CREATEDDATE alanını NOW() fonksiyonu ile otomatik olarak güncelleyecektir.
+
+Bu tetikleyici, "basket" tablosuna yeni bir kayıt eklenirken, CREATEDDATE alanını otomatik olarak günceller. NEW.CREATEDDATE = NOW(); satırı, yeni eklenen kaydın CREATEDDATE alanına mevcut tarih ve saat değerini atar. Böylece, her yeni "basket" kaydı eklediğinizde, CREATEDDATE alanı otomatik olarak güncellenir.
+
+SELECT * FROM `basket` WHERE USERID = 1;
+
+2. Triger 
+Bu SQL kodu, "orderdetail" tablosundan ID değeri 1 olan bir kaydı silmektedir. Bu silme işlemi, tetikleyiciyi tetikleyecektir.
+
+Tetikleyici tarafından gerçekleştirilecek işlem, orderdetail tablosundan bir kayıt silindiğinde ORDER tablosundaki ITEMCOUNT alanını güncellemektir. Tetikleyici, silinen kaydın ORDERID değerini kullanarak ORDER tablosundaki ilgili kaydı bulur ve ITEMCOUNT alanını günceller.
+
+
+DELETE FROM `orderdetail` WHERE ID = 1;
+
+Trigeri göstermek için
+
+SELECT * FROM `ORDER` WHERE ID = 1;
+
+3. triger
+Bu SQL komutu, "user_" tablosunda ID değeri 1 olan kaydın e-posta (EMAIL) alanını geçersiz bir e-posta adresi olan "invalid_email" olarak güncellemektedir. Bu güncelleme işlemi, tetikleyiciyi tetikleyecektir.
+
+Bu tetikleyici, "user_" tablosunda bir kayıt güncellenirken (BEFORE UPDATE), yeni e-posta adresinin (NEW.EMAIL) belirli bir düzeni (^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}$) sağlayıp sağlamadığını kontrol eder. Eğer yeni e-posta adresi düzeni sağlamıyorsa, tetikleyici bir hata mesajı döndürerek güncelleme işlemini engeller.
+
+UPDATE `user_` SET EMAIL = 'test1@mail.com' WHERE ID = 1;
+UPDATE `user_` SET EMAIL = 'invalid_email' WHERE ID = 1;
+
+select * from user_
+
+4. triger 
+
+INSERT INTO `payment` (BASKETID, TOTALPRICE, PAYMENTTYPE, DATE_, ISOK, APPROVECODE, ERROR_)
+VALUES (2, 75.50, 2, NOW(), 1, '789012', NULL);
+
+INSERT INTO `payment` (BASKETID, TOTALPRICE, PAYMENTTYPE, DATE_, ISOK, APPROVECODE, ERROR_)
+VALUES (3, 150.25, 1, NOW(), 1, '345678', NULL);
+
+INSERT INTO `payment` (BASKETID, TOTALPRICE, PAYMENTTYPE, DATE_, ISOK, APPROVECODE, ERROR_)
+VALUES (4, 50.00, 3, NOW(), 0, '901234', 'Insufficient funds');
+
+INSERT INTO `payment` (BASKETID, TOTALPRICE, PAYMENTTYPE, DATE_, ISOK, APPROVECODE, ERROR_)
+VALUES (5, 99.90, 1, NOW(), 1, '567890', NULL);
+
+INSERT INTO `payment` (BASKETID, TOTALPRICE, PAYMENTTYPE, DATE_, ISOK, APPROVECODE, ERROR_)
+VALUES (6, 200.50, 2, NOW(), 1, '123456', NULL);
+
+INSERT INTO `payment` (BASKETID, TOTALPRICE, PAYMENTTYPE, DATE_, ISOK, APPROVECODE, ERROR_)
+VALUES (7, 85.75, 1, NOW(), 1, '789012', NULL);
+
+INSERT INTO `payment` (BASKETID, TOTALPRICE, PAYMENTTYPE, DATE_, ISOK, APPROVECODE, ERROR_)
+VALUES (8, 60.00, 3, NOW(), 0, '345678', 'Insufficient funds');
+
+INSERT INTO `payment` (BASKETID, TOTALPRICE, PAYMENTTYPE, DATE_, ISOK, APPROVECODE, ERROR_)
+VALUES (9, 129.90, 1, NOW(), 1, '901234', NULL);
+
+INSERT INTO `payment` (BASKETID, TOTALPRICE, PAYMENTTYPE, DATE_, ISOK, APPROVECODE, ERROR_)
+VALUES (10, 175.50, 2, NOW(), 1, '567890', NULL);
+
+INSERT INTO `payment` (BASKETID, TOTALPRICE, PAYMENTTYPE, DATE_, ISOK, APPROVECODE, ERROR_)
+VALUES (11, 92.25, 1, 1233, 1, '123456', NULL);
+
+Trigerı göstermek için
+triger date zamanı için tetikleniyor. date tarihi kayıt yapılan zamanı alıyor.
+SELECT * FROM payment ORDER BY ID DESC
+
+
+Joinler
+
+İnner Join
+
+Bu sorgu, "user_", "address" ve "country" tablolarını kullanarak INNER JOIN işlemi gerçekleştirir. İlk JOIN işlemi, "user_" ve "address" tablolarını USERID alanı üzerinden birleştirir. Ardından, ikinci JOIN işlemi, "address" ve "country" tablolarını COUNTRYID alanı üzerinden birleştirir.
+
+Bu sorgu sonucunda, "user_", "address" ve "country" tablolarındaki eşleşen kayıtlar döndürülür. Yani, kullanıcılara ait adresler ve bu adreslerin ait olduğu ülkeler birleştirilir. Bu sayede, kullanıcıların adres bilgileri ile ilgili ülke bilgilerine erişebilirsiniz.
+
+Bu örnekte kullanılan INNER JOIN, eşleşen kayıtları döndürerek, sadece ilişkili kayıtların birleştirilmesini sağlar.
+
+SELECT *
+FROM `user_`
+JOIN `address` ON `user_`.ID = `address`.USERID
+JOIN `country` ON `address`.COUNTRYID = `country`.ID;
+
+Right Join
+
+Bu sorgu, "user_" ve "address" tablolarını USERID alanı üzerinden sağ dış birleştirme işlemi gerçekleştirir. Bu birleştirme, "user_" tablosundaki tüm kayıtları ve bu kayıtlara karşılık gelen "address" tablosundaki eşleşen kayıtları döndürür. Eşleşme olmayan kayıtlar NULL değerleriyle doldurulur. Bu sorgu, "user_" ve "address" tablolarını birleştirerek USERID alanı üzerinden sağ dış birleştirme yapar. Sonuçta, "user_" tablosundaki tüm kayıtlar ve bu kayıtlara karşılık gelen "address" tablosundaki eşleşen kayıtlar döndürülür. Eşleşme olmayan kayıtlar, "user_" tablosundaki kayıtların USERID alanının karşılığı olan alanlarda NULL değerleriyle temsil edilir.
+
+SELECT *
+FROM `user_`
+RIGHT JOIN `address` ON `user_`.ID = `address`.USERID;
+
+
+Left Join
+Bu örnekte, "ORDER" ve "USER_" tablolarını kullanarak sol JOIN işlemi gerçekleştirelim.
+
+Bu sorgu, "ORDER" ve "USER_" tablolarını USERID alanı üzerinden sol JOIN işlemi gerçekleştirir. Sonuç olarak, "ORDER" tablosundaki tüm kayıtlar ve bu kayıtlara karşılık gelen "USER_" tablosundaki eşleşen kayıtlar döndürülür. Eşleşme olmayan kayıtlar, "USER_" tablosundaki kayıtların USERID alanının karşılığı olan alanlarda NULL değerleriyle temsil edilir.
+
+Bu örnek, "ORDER" ve "USER_" tablolarını kullanarak sol JOIN işlemi gerçekleştirerek iki tabloyu birleştirmektedir. Sol JOIN, "ORDER" tablosundaki tüm kayıtları ve bu kayıtlara karşılık gelen "USER_" tablosundaki eşleşen kayıtları döndürerek, ilişkili bilgilerin birleştirilmesini sağlar.
+
+SELECT *
+FROM `ORDER`
+LEFT JOIN USER_ ON `ORDER`.USERID = USER_.ID;
+
+
+
+Outher Join
+
+Bu örnek, "ORDER" ve "INVOICE" tablolarını ORDERID alanı üzerinden tam dış birleştirme işlemi ile birleştirir.
+
+Bu sorgu, "ORDER" ve "INVOICE" tablolarını ORDERID alanı üzerinden tam dış birleştirme yapar. İlk bölümde sol dış birleştirme işlemi gerçekleştirilirken, ikinci bölümde sağ dış birleştirme işlemi gerçekleştirilir. Ardından, UNION operatörü kullanılarak iki bölümün sonuçları birleştirilir.
+
+SELECT *
+FROM `ORDER`
+LEFT JOIN INVOICE ON `ORDER`.ID = INVOICE.ORDERID
+UNION
+SELECT *
+FROM `ORDER`
+RIGHT JOIN INVOICE ON `ORDER`.ID = INVOICE.ORDERID;
+
+
+
+INSERT INTO USER_ (USERNAME_, PASSWORD_, NAMESURNAME, EMAIL, GENDER, CREATEDDATE, BIRTHDATE, TELNR1, TELNR2)
+VALUES 
+ ('berkanakin12', 'berkanpass12', 'Berkan akin', 'berkanakin123@mail.com', 'F', '2022-11-30 10:00:00', '1990-05-15', '1234563212', '98762131');
+
+ DELETE FROM user_ WHERE ID = '51';
+
+
+INSERT INTO ADDRESS (COUNTRYID, CITYID, TOWNID, DISTRICTID, POSTALCODE, ADDRESSTEXT, USERID)
+VALUES 
+    (1, 1, 1, 1, '12345', 'Atatürk Caddesi No: 1', 1);
+
+    INSERT INTO COUNTRY (COUNTRY)
+VALUES ('Türkiye');
+
+INSERT INTO ADDRESS (COUNTRYID, CITYID, TOWNID, DISTRICTID, POSTALCODE, ADDRESSTEXT, USERID)
+VALUES 
+    (1, 1, 1, 1, '12345', 'Atatürk Caddesi No: 1', 1);
+
+INSERT INTO PAYMENT (BASKETID, TOTALPRICE, PAYMENTTYPE, DATE_, ISOK, APPROVECODE, ERROR_)
+VALUES (1, 21.98, 1, '2022-01-01 10:30:00', 1, '123456', NULL);
+
+INSERT INTO `ORDER` (USERID, BASKETID, CREATEDDATE, ITEMCOUNT, TOTALPRICE, STATUS_)
+VALUES (1, 1, '2022-01-01 10:30:00', 2, 21.98, 1);    

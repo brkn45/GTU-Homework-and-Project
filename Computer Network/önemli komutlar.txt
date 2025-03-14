@@ -1,0 +1,1 @@
+ssh -i "berkan.pem" ubuntu@ec2-16-171-236-191.eu-north-1.compute.amazonaws.com

@@ -1,0 +1,73 @@
+* SPICE3 file created from 2mux.ext - technology: scmos
+
+.option scale=0.12u
+
+.model nfet NMOS (Level=1 Vto=0.7 Kp=120u W=10u L=2u Lambda=0.01)
+.model pfet PMOS (Level=1 Vto=-0.7 Kp=40u W=10u L=2u Lambda=0.02)
+
+M1000 a_n32_3# d0 Y vdd pfet w=4 l=2
++  ad=144 pd=96 as=48 ps=32
+M1001 a_6_n29# a_n43_n29# Y Gnd nfet w=4 l=2
++  ad=48 pd=32 as=52 ps=34
+M1002 a_n43_n29# s vdd vdd pfet w=4 l=2
++  ad=32 pd=24 as=72 ps=52
+M1003 Y a_n43_n29# a_n32_3# vdd pfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+M1004 Gnd d0 a_6_n29# Gnd nfet w=4 l=2
++  ad=92 pd=70 as=0 ps=0
+M1005 a_n22_n29# d1 Gnd Gnd nfet w=4 l=2
++  ad=44 pd=30 as=0 ps=0
+M1006 Y s a_n22_n29# Gnd nfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+M1007 a_n43_n29# s Gnd Gnd nfet w=4 l=2
++  ad=40 pd=28 as=0 ps=0
+M1008 a_n32_3# s vdd vdd pfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+M1009 vdd d1 a_n32_3# vdd pfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+C0 d1 a_n43_n29# 0.02fF
+C1 d1 vdd 0.11fF
+C2 Gnd Y 0.11fF
+C3 Y a_n32_3# 0.06fF
+C4 vdd a_n43_n29# 0.19fF
+C5 d0 Y 0.02fF
+C6 d1 Gnd 0.05fF
+C7 d1 a_n32_3# 0.02fF
+C8 d1 s 0.01fF
+C9 Gnd a_n43_n29# 0.09fF
+C10 a_n43_n29# a_n32_3# 0.55fF
+C11 a_n43_n29# s 0.07fF
+C12 vdd a_n32_3# 0.89fF
+C13 vdd s 0.66fF
+C14 vdd d0 0.54fF
+C15 a_n43_n29# Y 0.13fF
+C16 vdd Y 0.05fF
+C17 s a_n32_3# 0.02fF
+C18 d0 a_n32_3# 0.02fF
+C19 Gnd Gnd 0.07fF
+C20 Y Gnd 0.34fF
+C21 a_n32_3# Gnd 0.04fF
+C22 a_n43_n29# Gnd 0.62fF
+C23 d1 Gnd 0.74fF
+C24 s Gnd 0.13fF
+C25 d0 Gnd 0.14fF
+C26 vdd Gnd 0.52fF
+
+
+VDD Vdd 0 2.5
+
+VD0 d0 0 PULSE(0 2.5V 200ns 0 0 200ns 400ns)
+VD1 d1 0 PULSE(0 2.5V 100ns 0 0 100ns 200ns)
+VS s 0 0 PULSE(0 2.5V 50ns 0 0 50ns 100ns)
+
+
+.OPTIONS TEMP=25 reltol=1e-6
+.tran 1NS 400NS
+
+.control
+run
+
+plot V(d0) + 5 V(d1) + 10 V(s) + 15 V(Y)
+
+.endc
+.end

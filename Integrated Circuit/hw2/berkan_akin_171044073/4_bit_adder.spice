@@ -1,0 +1,450 @@
+* SPICE3 file created from 4_bit_adder.ext - technology: scmos
+
+.option scale=0.12u
+
+.model nfet NMOS (Level=1 Vto=0.7 Kp=120u W=10u L=2u Lambda=0.01)
+.model pfet PMOS (Level=1 Vto=-0.7 Kp=40u W=10u L=2u Lambda=0.02)
+
+M1000 berkan_full_adder_0/a_40_1# A1 Vddbig Vddbig pfet w=7 l=3
++  ad=182 pd=80 as=1960 ps=896
+M1001 berkan_full_adder_0/a_108_1# A1 berkan_full_adder_0/a_85_n65# Vddbig pfet w=7 l=3
++  ad=84 pd=38 as=140 ps=54
+M1002 berkan_full_adder_0/Gnd B1 berkan_full_adder_0/a_40_n65# Gnd nfet w=9 l=3
++  ad=1053 pd=342 as=234 ps=88
+M1003 berkan_full_adder_0/a_6_1# A1 berkan_full_adder_0/a_n103_n70# Vddbig pfet w=7 l=3
++  ad=91 pd=40 as=203 ps=72
+M1004 berkan_full_adder_0/a_85_n65# berkan_full_adder_0/a_n103_n70# berkan_full_adder_0/a_40_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+** SOURCE/DRAIN TIED
+M1005 berkan_full_adder_0/Gnd A1 berkan_full_adder_0/Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1006 berkan_full_adder_0/a_40_n65# A1 berkan_full_adder_0/Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1007 berkan_full_adder_0/Gnd B1 berkan_full_adder_0/a_6_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=117 ps=44
+M1008 Sum1 berkan_full_adder_0/a_85_n65# Vddbig Vddbig pfet w=7 l=3
++  ad=119 pd=48 as=0 ps=0
+M1009 berkan_full_adder_0/a_n103_n70# C1 berkan_full_adder_0/Gnd Gnd nfet w=9 l=3
++  ad=261 pd=76 as=0 ps=0
+M1010 Vddbig A1 berkan_full_adder_0/a_n88_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=280 ps=108
+M1011 berkan_full_adder_0/a_n103_n70# C1 berkan_full_adder_0/a_n88_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1012 berkan_full_adder_0/Gnd berkan_full_adder_0/a_n103_n70# berkan_full_adder_1/C Gnd nfet w=9 l=3
++  ad=0 pd=0 as=135 ps=48
+M1013 berkan_full_adder_0/a_123_n65# B1 berkan_full_adder_0/a_108_n65# Gnd nfet w=9 l=3
++  ad=72 pd=34 as=108 ps=42
+M1014 berkan_full_adder_0/a_6_n65# A1 berkan_full_adder_0/a_n103_n70# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1015 berkan_full_adder_0/a_123_1# B1 berkan_full_adder_0/a_108_1# Vddbig pfet w=7 l=3
++  ad=56 pd=30 as=0 ps=0
+M1016 Vddbig B1 berkan_full_adder_0/a_6_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1017 Vddbig B1 berkan_full_adder_0/a_40_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1018 berkan_full_adder_0/a_108_n65# A1 berkan_full_adder_0/a_85_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=180 ps=58
+** SOURCE/DRAIN TIED
+M1019 berkan_full_adder_0/Gnd B1 berkan_full_adder_0/Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1020 Vddbig berkan_full_adder_0/a_n103_n70# berkan_full_adder_1/C Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=126 ps=50
+M1021 berkan_full_adder_0/a_40_1# C1 Vddbig Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1022 Vddbig C1 berkan_full_adder_0/a_123_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1023 berkan_full_adder_0/Gnd C1 berkan_full_adder_0/a_123_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1024 berkan_full_adder_0/a_n88_1# B1 Vddbig Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1025 Sum1 berkan_full_adder_0/a_85_n65# berkan_full_adder_0/Gnd Gnd nfet w=9 l=3
++  ad=207 pd=64 as=0 ps=0
+M1026 berkan_full_adder_0/a_85_n65# berkan_full_adder_0/a_n103_n70# berkan_full_adder_0/a_40_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1027 berkan_full_adder_0/a_40_n65# C1 berkan_full_adder_0/Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1028 berkan_full_adder_1/a_40_1# A2 Vddbig Vddbig pfet w=7 l=3
++  ad=182 pd=80 as=0 ps=0
+M1029 berkan_full_adder_1/a_108_1# A2 berkan_full_adder_1/a_85_n65# Vddbig pfet w=7 l=3
++  ad=84 pd=38 as=140 ps=54
+M1030 berkan_full_adder_1/Gnd B2 berkan_full_adder_1/a_40_n65# Gnd nfet w=9 l=3
++  ad=1053 pd=342 as=234 ps=88
+M1031 berkan_full_adder_1/a_6_1# A2 berkan_full_adder_1/a_n103_n70# Vddbig pfet w=7 l=3
++  ad=91 pd=40 as=203 ps=72
+M1032 berkan_full_adder_1/a_85_n65# berkan_full_adder_1/a_n103_n70# berkan_full_adder_1/a_40_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+** SOURCE/DRAIN TIED
+M1033 berkan_full_adder_1/Gnd A2 berkan_full_adder_1/Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1034 berkan_full_adder_1/a_40_n65# A2 berkan_full_adder_1/Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1035 berkan_full_adder_1/Gnd B2 berkan_full_adder_1/a_6_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=117 ps=44
+M1036 Sum2 berkan_full_adder_1/a_85_n65# Vddbig Vddbig pfet w=7 l=3
++  ad=119 pd=48 as=0 ps=0
+M1037 berkan_full_adder_1/a_n103_n70# berkan_full_adder_1/C berkan_full_adder_1/Gnd Gnd nfet w=9 l=3
++  ad=261 pd=76 as=0 ps=0
+M1038 Vddbig A2 berkan_full_adder_1/a_n88_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=280 ps=108
+M1039 berkan_full_adder_1/a_n103_n70# berkan_full_adder_1/C berkan_full_adder_1/a_n88_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1040 berkan_full_adder_1/Gnd berkan_full_adder_1/a_n103_n70# C3 Gnd nfet w=9 l=3
++  ad=0 pd=0 as=135 ps=48
+M1041 berkan_full_adder_1/a_123_n65# B2 berkan_full_adder_1/a_108_n65# Gnd nfet w=9 l=3
++  ad=72 pd=34 as=108 ps=42
+M1042 berkan_full_adder_1/a_6_n65# A2 berkan_full_adder_1/a_n103_n70# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1043 berkan_full_adder_1/a_123_1# B2 berkan_full_adder_1/a_108_1# Vddbig pfet w=7 l=3
++  ad=56 pd=30 as=0 ps=0
+M1044 Vddbig B2 berkan_full_adder_1/a_6_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1045 Vddbig B2 berkan_full_adder_1/a_40_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1046 berkan_full_adder_1/a_108_n65# A2 berkan_full_adder_1/a_85_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=180 ps=58
+** SOURCE/DRAIN TIED
+M1047 berkan_full_adder_1/Gnd B2 berkan_full_adder_1/Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1048 Vddbig berkan_full_adder_1/a_n103_n70# C3 Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=126 ps=50
+M1049 berkan_full_adder_1/a_40_1# berkan_full_adder_1/C Vddbig Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1050 Vddbig berkan_full_adder_1/C berkan_full_adder_1/a_123_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1051 berkan_full_adder_1/Gnd berkan_full_adder_1/C berkan_full_adder_1/a_123_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1052 berkan_full_adder_1/a_n88_1# B2 Vddbig Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1053 Sum2 berkan_full_adder_1/a_85_n65# berkan_full_adder_1/Gnd Gnd nfet w=9 l=3
++  ad=207 pd=64 as=0 ps=0
+M1054 berkan_full_adder_1/a_85_n65# berkan_full_adder_1/a_n103_n70# berkan_full_adder_1/a_40_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1055 berkan_full_adder_1/a_40_n65# berkan_full_adder_1/C berkan_full_adder_1/Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1056 berkan_full_adder_2/a_40_1# A3 Vddbig Vddbig pfet w=7 l=3
++  ad=182 pd=80 as=0 ps=0
+M1057 berkan_full_adder_2/a_108_1# A3 berkan_full_adder_2/a_85_n65# Vddbig pfet w=7 l=3
++  ad=84 pd=38 as=140 ps=54
+M1058 berkan_full_adder_2/Gnd B3 berkan_full_adder_2/a_40_n65# Gnd nfet w=9 l=3
++  ad=1053 pd=342 as=234 ps=88
+M1059 berkan_full_adder_2/a_6_1# A3 berkan_full_adder_2/a_n103_n70# Vddbig pfet w=7 l=3
++  ad=91 pd=40 as=203 ps=72
+M1060 berkan_full_adder_2/a_85_n65# berkan_full_adder_2/a_n103_n70# berkan_full_adder_2/a_40_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+** SOURCE/DRAIN TIED
+M1061 berkan_full_adder_2/Gnd A3 berkan_full_adder_2/Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1062 berkan_full_adder_2/a_40_n65# A3 berkan_full_adder_2/Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1063 berkan_full_adder_2/Gnd B3 berkan_full_adder_2/a_6_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=117 ps=44
+M1064 Sum3 berkan_full_adder_2/a_85_n65# Vddbig Vddbig pfet w=7 l=3
++  ad=119 pd=48 as=0 ps=0
+M1065 berkan_full_adder_2/a_n103_n70# C3 berkan_full_adder_2/Gnd Gnd nfet w=9 l=3
++  ad=261 pd=76 as=0 ps=0
+M1066 Vddbig A3 berkan_full_adder_2/a_n88_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=280 ps=108
+M1067 berkan_full_adder_2/a_n103_n70# C3 berkan_full_adder_2/a_n88_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1068 berkan_full_adder_2/Gnd berkan_full_adder_2/a_n103_n70# C4 Gnd nfet w=9 l=3
++  ad=0 pd=0 as=135 ps=48
+M1069 berkan_full_adder_2/a_123_n65# B3 berkan_full_adder_2/a_108_n65# Gnd nfet w=9 l=3
++  ad=72 pd=34 as=108 ps=42
+M1070 berkan_full_adder_2/a_6_n65# A3 berkan_full_adder_2/a_n103_n70# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1071 berkan_full_adder_2/a_123_1# B3 berkan_full_adder_2/a_108_1# Vddbig pfet w=7 l=3
++  ad=56 pd=30 as=0 ps=0
+M1072 Vddbig B3 berkan_full_adder_2/a_6_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1073 Vddbig B3 berkan_full_adder_2/a_40_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1074 berkan_full_adder_2/a_108_n65# A3 berkan_full_adder_2/a_85_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=180 ps=58
+** SOURCE/DRAIN TIED
+M1075 berkan_full_adder_2/Gnd B3 berkan_full_adder_2/Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1076 Vddbig berkan_full_adder_2/a_n103_n70# C4 Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=126 ps=50
+M1077 berkan_full_adder_2/a_40_1# C3 Vddbig Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1078 Vddbig C3 berkan_full_adder_2/a_123_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1079 berkan_full_adder_2/Gnd C3 berkan_full_adder_2/a_123_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1080 berkan_full_adder_2/a_n88_1# B3 Vddbig Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1081 Sum3 berkan_full_adder_2/a_85_n65# berkan_full_adder_2/Gnd Gnd nfet w=9 l=3
++  ad=207 pd=64 as=0 ps=0
+M1082 berkan_full_adder_2/a_85_n65# berkan_full_adder_2/a_n103_n70# berkan_full_adder_2/a_40_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1083 berkan_full_adder_2/a_40_n65# C3 berkan_full_adder_2/Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1084 berkan_full_adder_3/a_40_1# A4 Vddbig Vddbig pfet w=7 l=3
++  ad=182 pd=80 as=0 ps=0
+M1085 berkan_full_adder_3/a_108_1# A4 berkan_full_adder_3/a_85_n65# Vddbig pfet w=7 l=3
++  ad=84 pd=38 as=140 ps=54
+M1086 berkan_full_adder_3/Gnd B4 berkan_full_adder_3/a_40_n65# Gnd nfet w=9 l=3
++  ad=1053 pd=342 as=234 ps=88
+M1087 berkan_full_adder_3/a_6_1# A4 berkan_full_adder_3/a_n103_n70# Vddbig pfet w=7 l=3
++  ad=91 pd=40 as=203 ps=72
+M1088 berkan_full_adder_3/a_85_n65# berkan_full_adder_3/a_n103_n70# berkan_full_adder_3/a_40_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+** SOURCE/DRAIN TIED
+M1089 berkan_full_adder_3/Gnd A4 berkan_full_adder_3/Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1090 berkan_full_adder_3/a_40_n65# A4 berkan_full_adder_3/Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1091 berkan_full_adder_3/Gnd B4 berkan_full_adder_3/a_6_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=117 ps=44
+M1092 Sum4 berkan_full_adder_3/a_85_n65# Vddbig Vddbig pfet w=7 l=3
++  ad=119 pd=48 as=0 ps=0
+M1093 berkan_full_adder_3/a_n103_n70# C4 berkan_full_adder_3/Gnd Gnd nfet w=9 l=3
++  ad=261 pd=76 as=0 ps=0
+M1094 Vddbig A4 berkan_full_adder_3/a_n88_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=280 ps=108
+M1095 berkan_full_adder_3/a_n103_n70# C4 berkan_full_adder_3/a_n88_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1096 berkan_full_adder_3/Gnd berkan_full_adder_3/a_n103_n70# berkan_full_adder_3/Cout Gnd nfet w=9 l=3
++  ad=0 pd=0 as=135 ps=48
+M1097 berkan_full_adder_3/a_123_n65# B4 berkan_full_adder_3/a_108_n65# Gnd nfet w=9 l=3
++  ad=72 pd=34 as=108 ps=42
+M1098 berkan_full_adder_3/a_6_n65# A4 berkan_full_adder_3/a_n103_n70# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1099 berkan_full_adder_3/a_123_1# B4 berkan_full_adder_3/a_108_1# Vddbig pfet w=7 l=3
++  ad=56 pd=30 as=0 ps=0
+M1100 Vddbig B4 berkan_full_adder_3/a_6_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1101 Vddbig B4 berkan_full_adder_3/a_40_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1102 berkan_full_adder_3/a_108_n65# A4 berkan_full_adder_3/a_85_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=180 ps=58
+** SOURCE/DRAIN TIED
+M1103 berkan_full_adder_3/Gnd B4 berkan_full_adder_3/Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1104 Vddbig berkan_full_adder_3/a_n103_n70# berkan_full_adder_3/Cout Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=126 ps=50
+M1105 berkan_full_adder_3/a_40_1# C4 Vddbig Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1106 Vddbig C4 berkan_full_adder_3/a_123_1# Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1107 berkan_full_adder_3/Gnd C4 berkan_full_adder_3/a_123_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1108 berkan_full_adder_3/a_n88_1# B4 Vddbig Vddbig pfet w=7 l=3
++  ad=0 pd=0 as=0 ps=0
+M1109 Sum4 berkan_full_adder_3/a_85_n65# berkan_full_adder_3/Gnd Gnd nfet w=9 l=3
++  ad=207 pd=64 as=0 ps=0
+M1110 berkan_full_adder_3/a_85_n65# berkan_full_adder_3/a_n103_n70# berkan_full_adder_3/a_40_n65# Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+M1111 berkan_full_adder_3/a_40_n65# C4 berkan_full_adder_3/Gnd Gnd nfet w=9 l=3
++  ad=0 pd=0 as=0 ps=0
+C0 B4 berkan_full_adder_3/a_85_n65# 0.62fF
+C1 Vddbig B2 0.57fF
+C2 A3 C4 0.33fF
+C3 Vddbig C1 0.44fF
+C4 C4 berkan_full_adder_3/Cout 0.48fF
+C5 B3 berkan_full_adder_2/a_n88_1# 0.03fF
+C6 berkan_full_adder_3/a_n103_n70# berkan_full_adder_3/Cout 0.05fF
+C7 C3 B3 3.90fF
+C8 A4 berkan_full_adder_3/Cout 0.33fF
+C9 C3 B2 0.25fF
+C10 Vddbig berkan_full_adder_3/a_n88_1# 0.26fF
+C11 Vddbig Sum1 0.04fF
+C12 berkan_full_adder_2/Gnd berkan_full_adder_2/a_40_n65# 0.10fF
+C13 Vddbig berkan_full_adder_1/C 0.48fF
+C14 Vddbig B4 0.57fF
+C15 A3 berkan_full_adder_2/a_85_n65# 0.69fF
+C16 A2 berkan_full_adder_1/a_n103_n70# 1.82fF
+C17 berkan_full_adder_1/a_40_n65# B2 0.04fF
+C18 berkan_full_adder_0/a_85_n65# A1 0.69fF
+C19 C3 berkan_full_adder_1/C 0.65fF
+C20 A2 berkan_full_adder_1/a_85_n65# 0.69fF
+C21 berkan_full_adder_1/a_40_n65# berkan_full_adder_1/C 0.56fF
+C22 B1 berkan_full_adder_0/a_40_1# 0.04fF
+C23 Vddbig Sum3 0.04fF
+C24 Vddbig berkan_full_adder_0/a_85_n65# 0.18fF
+C25 Vddbig berkan_full_adder_1/a_n88_1# 0.26fF
+C26 B1 berkan_full_adder_0/a_40_n65# 0.04fF
+C27 Sum2 berkan_full_adder_1/a_85_n65# 0.04fF
+C28 B1 berkan_full_adder_0/a_n103_n70# 1.85fF
+C29 berkan_full_adder_0/a_108_n65# B1 0.05fF
+C30 B4 berkan_full_adder_3/a_40_n65# 0.04fF
+C31 berkan_full_adder_1/Gnd A2 0.03fF
+C32 C4 berkan_full_adder_3/a_n103_n70# 0.33fF
+C33 B3 A3 0.18fF
+C34 Vddbig berkan_full_adder_2/a_n103_n70# 0.34fF
+C35 A4 C4 0.12fF
+C36 A4 berkan_full_adder_3/a_n103_n70# 1.82fF
+C37 B4 berkan_full_adder_3/a_40_1# 0.04fF
+C38 B2 berkan_full_adder_1/a_n103_n70# 1.85fF
+C39 C3 berkan_full_adder_2/a_n103_n70# 0.33fF
+C40 berkan_full_adder_0/Gnd A1 0.03fF
+C41 berkan_full_adder_1/a_40_1# A2 0.63fF
+C42 berkan_full_adder_0/a_40_1# C1 0.04fF
+C43 berkan_full_adder_2/Gnd B3 0.03fF
+C44 berkan_full_adder_1/C berkan_full_adder_1/a_n103_n70# 0.33fF
+C45 B2 berkan_full_adder_1/a_85_n65# 0.62fF
+C46 B4 berkan_full_adder_3/Cout 0.37fF
+C47 berkan_full_adder_0/a_40_n65# C1 0.56fF
+C48 Vddbig A1 1.67fF
+C49 Vddbig berkan_full_adder_3/a_85_n65# 0.18fF
+C50 berkan_full_adder_2/a_40_1# B3 0.04fF
+C51 berkan_full_adder_0/a_n103_n70# C1 0.33fF
+C52 berkan_full_adder_1/a_85_n65# berkan_full_adder_1/C 0.04fF
+C53 berkan_full_adder_3/a_123_n65# C4 0.05fF
+C54 berkan_full_adder_2/a_6_n65# C3 0.03fF
+C55 berkan_full_adder_3/a_6_n65# C4 0.03fF
+C56 B2 berkan_full_adder_1/Gnd 0.03fF
+C57 berkan_full_adder_0/a_n103_n70# berkan_full_adder_1/C 0.05fF
+C58 berkan_full_adder_3/Gnd berkan_full_adder_3/a_40_n65# 0.10fF
+C59 berkan_full_adder_1/a_108_n65# B2 0.05fF
+C60 B3 berkan_full_adder_2/a_40_n65# 0.04fF
+C61 Vddbig berkan_full_adder_2/a_n88_1# 0.26fF
+C62 Vddbig C3 0.48fF
+C63 berkan_full_adder_1/Gnd berkan_full_adder_1/C 1.05fF
+C64 B1 berkan_full_adder_0/a_n88_1# 0.03fF
+C65 B3 C4 0.21fF
+C66 berkan_full_adder_1/a_6_n65# B2 0.05fF
+C67 berkan_full_adder_1/a_40_1# B2 0.04fF
+C68 A3 berkan_full_adder_2/a_n103_n70# 1.82fF
+C69 B3 berkan_full_adder_2/a_108_n65# 0.05fF
+C70 berkan_full_adder_0/a_85_n65# berkan_full_adder_0/a_n103_n70# 0.03fF
+C71 berkan_full_adder_1/a_6_n65# berkan_full_adder_1/C 0.03fF
+C72 B3 berkan_full_adder_2/a_85_n65# 0.62fF
+C73 berkan_full_adder_3/a_n88_1# A4 0.50fF
+C74 berkan_full_adder_1/a_40_1# berkan_full_adder_1/C 0.04fF
+C75 B4 C4 3.90fF
+C76 B2 A2 0.18fF
+C77 B4 berkan_full_adder_3/a_n103_n70# 1.85fF
+C78 B4 A4 0.18fF
+C79 B1 C1 3.90fF
+C80 A2 berkan_full_adder_1/C 0.22fF
+C81 Vddbig berkan_full_adder_3/a_40_1# 0.26fF
+C82 berkan_full_adder_0/a_123_n65# C1 0.05fF
+C83 berkan_full_adder_3/a_85_n65# Sum4 0.04fF
+C84 B1 berkan_full_adder_1/C 0.58fF
+C85 berkan_full_adder_0/a_40_1# A1 0.63fF
+C86 berkan_full_adder_3/a_108_n65# B4 0.05fF
+C87 Vddbig A3 1.67fF
+C88 Vddbig Sum4 0.04fF
+C89 Vddbig berkan_full_adder_1/a_n103_n70# 0.34fF
+C90 Vddbig berkan_full_adder_3/Cout 0.04fF
+C91 Sum3 berkan_full_adder_2/a_85_n65# 0.04fF
+C92 A3 berkan_full_adder_2/a_n88_1# 0.50fF
+C93 berkan_full_adder_0/Gnd berkan_full_adder_0/a_40_n65# 0.10fF
+C94 berkan_full_adder_0/a_n103_n70# A1 1.82fF
+C95 A2 berkan_full_adder_1/a_n88_1# 0.50fF
+C96 C3 A3 0.12fF
+C97 berkan_full_adder_3/a_6_n65# B4 0.05fF
+C98 Vddbig berkan_full_adder_0/a_40_1# 0.26fF
+C99 C3 berkan_full_adder_1/a_n103_n70# 0.05fF
+C100 berkan_full_adder_2/a_n103_n70# C4 0.05fF
+C101 B1 berkan_full_adder_0/a_85_n65# 0.62fF
+C102 Vddbig berkan_full_adder_1/a_85_n65# 0.18fF
+C103 berkan_full_adder_1/a_123_n65# berkan_full_adder_1/C 0.05fF
+C104 berkan_full_adder_3/Gnd C4 1.05fF
+C105 Vddbig berkan_full_adder_0/a_n103_n70# 0.34fF
+C106 B2 berkan_full_adder_1/C 3.90fF
+C107 A4 berkan_full_adder_3/Gnd 0.03fF
+C108 berkan_full_adder_2/Gnd C3 1.05fF
+C109 berkan_full_adder_2/a_n103_n70# berkan_full_adder_2/a_85_n65# 0.03fF
+C110 Vddbig berkan_full_adder_2/a_40_1# 0.26fF
+C111 C1 berkan_full_adder_1/C 0.59fF
+C112 B1 berkan_full_adder_0/a_6_n65# 0.05fF
+C113 berkan_full_adder_2/a_40_1# C3 0.04fF
+C114 C4 berkan_full_adder_3/a_85_n65# 0.04fF
+C115 berkan_full_adder_3/a_n103_n70# berkan_full_adder_3/a_85_n65# 0.03fF
+C116 berkan_full_adder_3/a_n88_1# B4 0.03fF
+C117 A4 berkan_full_adder_3/a_85_n65# 0.69fF
+C118 berkan_full_adder_0/a_85_n65# C1 0.04fF
+C119 B2 berkan_full_adder_1/a_n88_1# 0.03fF
+C120 Vddbig C4 0.48fF
+C121 Vddbig berkan_full_adder_3/a_n103_n70# 0.34fF
+C122 Vddbig berkan_full_adder_1/a_40_1# 0.26fF
+C123 berkan_full_adder_1/a_40_n65# berkan_full_adder_1/Gnd 0.10fF
+C124 Vddbig A4 1.67fF
+C125 C3 berkan_full_adder_2/a_40_n65# 0.56fF
+C126 B1 A1 0.18fF
+C127 berkan_full_adder_0/a_85_n65# Sum1 0.04fF
+C128 C3 C4 0.59fF
+C129 B1 berkan_full_adder_0/Gnd 0.03fF
+C130 Vddbig berkan_full_adder_2/a_85_n65# 0.18fF
+C131 Vddbig A2 1.68fF
+C132 B3 berkan_full_adder_2/a_n103_n70# 1.85fF
+C133 berkan_full_adder_0/a_6_n65# C1 0.03fF
+C134 berkan_full_adder_0/a_n88_1# A1 0.50fF
+C135 Vddbig B1 0.57fF
+C136 berkan_full_adder_2/Gnd A3 0.03fF
+C137 berkan_full_adder_1/a_85_n65# berkan_full_adder_1/a_n103_n70# 0.03fF
+C138 C3 berkan_full_adder_2/a_85_n65# 0.04fF
+C139 C3 A2 0.33fF
+C140 Vddbig Sum2 0.04fF
+C141 C3 berkan_full_adder_2/a_123_n65# 0.05fF
+C142 berkan_full_adder_2/a_40_1# A3 0.63fF
+C143 Vddbig berkan_full_adder_0/a_n88_1# 0.26fF
+C144 C4 berkan_full_adder_3/a_40_n65# 0.56fF
+C145 berkan_full_adder_2/a_6_n65# B3 0.05fF
+C146 A1 C1 0.12fF
+C147 B4 berkan_full_adder_3/Gnd 0.03fF
+C148 C4 berkan_full_adder_3/a_40_1# 0.04fF
+C149 A4 berkan_full_adder_3/a_40_1# 0.63fF
+C150 berkan_full_adder_0/Gnd C1 1.05fF
+C151 A1 berkan_full_adder_1/C 0.33fF
+C152 Vddbig B3 0.57fF
+C153 berkan_full_adder_3/a_40_n65# Gnd 0.15fF
+C154 berkan_full_adder_3/Gnd Gnd 0.37fF
+C155 Sum4 Gnd 0.64fF
+C156 berkan_full_adder_3/Cout Gnd 0.51fF
+C157 berkan_full_adder_3/a_85_n65# Gnd 1.41fF
+C158 C4 Gnd 6.12fF
+C159 B4 Gnd 4.73fF
+C160 A4 Gnd 3.46fF
+C161 berkan_full_adder_3/a_n103_n70# Gnd 0.80fF
+C162 Vddbig Gnd 44.92fF
+C163 berkan_full_adder_2/a_40_n65# Gnd 0.15fF
+C164 berkan_full_adder_2/Gnd Gnd 0.37fF
+C165 Sum3 Gnd 0.54fF
+C166 berkan_full_adder_2/a_85_n65# Gnd 1.41fF
+C167 C3 Gnd 5.47fF
+C168 B3 Gnd 4.73fF
+C169 A3 Gnd 3.82fF
+C170 berkan_full_adder_2/a_n103_n70# Gnd 0.80fF
+C171 berkan_full_adder_1/a_40_n65# Gnd 0.15fF
+C172 berkan_full_adder_1/Gnd Gnd 0.37fF
+C173 Sum2 Gnd 0.64fF
+C174 berkan_full_adder_1/a_85_n65# Gnd 1.41fF
+C175 berkan_full_adder_1/C Gnd 5.21fF
+C176 B2 Gnd 4.73fF
+C177 A2 Gnd 4.08fF
+C178 berkan_full_adder_1/a_n103_n70# Gnd 0.80fF
+C179 berkan_full_adder_0/a_40_n65# Gnd 0.15fF
+C180 berkan_full_adder_0/Gnd Gnd 0.37fF
+C181 Sum1 Gnd 0.84fF
+C182 berkan_full_adder_0/a_85_n65# Gnd 1.41fF
+C183 C1 Gnd 4.58fF
+C184 B1 Gnd 5.08fF
+C185 A1 Gnd 3.89fF
+C186 berkan_full_adder_0/a_n103_n70# Gnd 0.80fF
+
+VDD Vddbig 0 DC 2.5
+
+
+VA1 A1 0 5
+VB1 B1 0 0
+VC1 C1 0 0
+
+VA2 A2 0 0
+VB2 B2 0 5
+
+VA3 A3 0 0
+VB3 B3 0 0
+
+VA4 A4 0 0
+VB4 B4 0 0
+
+.tran  1NS 200NS
+.controll
+run
+plot V(A1) V(B1) V(A2) V(B2) V(A3) V(B3) V(A4) V(B4) V(C1) V(Sum1) V(Sum2) V(Sum3)  V(Sum4) 
+
+.endc
+.end

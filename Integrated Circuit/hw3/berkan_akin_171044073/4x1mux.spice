@@ -1,0 +1,166 @@
+* SPICE3 file created from 4x1mux.ext - technology: scmos
+
+.option scale=0.12u
+
+.model nfet NMOS (Level=1 Vto=0.7 Kp=120u W=10u L=2u Lambda=0.01)
+.model pfet PMOS (Level=1 Vto=-0.7 Kp=40u W=10u L=2u Lambda=0.02)
+
+M1000 2mux_0/a_n32_3# d1b 2mux_0/Y Vdd4 pfet w=4 l=2
++  ad=144 pd=96 as=48 ps=32
+M1001 2mux_0/a_6_n29# 2mux_0/a_n43_n29# 2mux_0/Y Gnd nfet w=4 l=2
++  ad=48 pd=32 as=52 ps=34
+M1002 2mux_0/a_n43_n29# s0 Vdd4 Vdd4 pfet w=4 l=2
++  ad=32 pd=24 as=216 ps=156
+M1003 2mux_0/Y 2mux_0/a_n43_n29# 2mux_0/a_n32_3# Vdd4 pfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+M1004 Gnd4 d1b 2mux_0/a_6_n29# Gnd nfet w=4 l=2
++  ad=276 pd=210 as=0 ps=0
+M1005 2mux_0/a_n22_n29# d0b Gnd4 Gnd nfet w=4 l=2
++  ad=44 pd=30 as=0 ps=0
+M1006 2mux_0/Y s0 2mux_0/a_n22_n29# Gnd nfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+M1007 2mux_0/a_n43_n29# s0 Gnd4 Gnd nfet w=4 l=2
++  ad=40 pd=28 as=0 ps=0
+M1008 2mux_0/a_n32_3# s0 Vdd4 Vdd4 pfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+M1009 Vdd4 d0b 2mux_0/a_n32_3# Vdd4 pfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+M1010 2mux_1/a_n32_3# d3b 2mux_1/Y Vdd4 pfet w=4 l=2
++  ad=144 pd=96 as=48 ps=32
+M1011 2mux_1/a_6_n29# 2mux_1/a_n43_n29# 2mux_1/Y Gnd nfet w=4 l=2
++  ad=48 pd=32 as=52 ps=34
+M1012 2mux_1/a_n43_n29# s0 Vdd4 Vdd4 pfet w=4 l=2
++  ad=32 pd=24 as=0 ps=0
+M1013 2mux_1/Y 2mux_1/a_n43_n29# 2mux_1/a_n32_3# Vdd4 pfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+M1014 Gnd4 d3b 2mux_1/a_6_n29# Gnd nfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+M1015 2mux_1/a_n22_n29# d2b Gnd4 Gnd nfet w=4 l=2
++  ad=44 pd=30 as=0 ps=0
+M1016 2mux_1/Y s0 2mux_1/a_n22_n29# Gnd nfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+M1017 2mux_1/a_n43_n29# s0 Gnd4 Gnd nfet w=4 l=2
++  ad=40 pd=28 as=0 ps=0
+M1018 2mux_1/a_n32_3# s0 Vdd4 Vdd4 pfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+M1019 Vdd4 d2b 2mux_1/a_n32_3# Vdd4 pfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+M1020 2mux_2/a_n32_3# 2mux_1/Y Y4 Vdd4 pfet w=4 l=2
++  ad=144 pd=96 as=48 ps=32
+M1021 2mux_2/a_6_n29# 2mux_2/a_n43_n29# Y4 Gnd nfet w=4 l=2
++  ad=48 pd=32 as=52 ps=34
+M1022 2mux_2/a_n43_n29# s1 Vdd4 Vdd4 pfet w=4 l=2
++  ad=32 pd=24 as=0 ps=0
+M1023 Y4 2mux_2/a_n43_n29# 2mux_2/a_n32_3# Vdd4 pfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+M1024 Gnd4 2mux_1/Y 2mux_2/a_6_n29# Gnd nfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+M1025 2mux_2/a_n22_n29# 2mux_0/Y Gnd4 Gnd nfet w=4 l=2
++  ad=44 pd=30 as=0 ps=0
+M1026 Y4 s1 2mux_2/a_n22_n29# Gnd nfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+M1027 2mux_2/a_n43_n29# s1 Gnd4 Gnd nfet w=4 l=2
++  ad=40 pd=28 as=0 ps=0
+M1028 2mux_2/a_n32_3# s1 Vdd4 Vdd4 pfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+M1029 Vdd4 2mux_0/Y 2mux_2/a_n32_3# Vdd4 pfet w=4 l=2
++  ad=0 pd=0 as=0 ps=0
+C0 2mux_1/a_n32_3# 2mux_1/Y 0.06fF
+C1 s0 d0b 0.01fF
+C2 2mux_0/Y 2mux_2/a_n32_3# 0.02fF
+C3 d2b s0 0.01fF
+C4 Vdd4 2mux_2/a_n32_3# 0.89fF
+C5 Gnd4 2mux_0/a_n43_n29# 0.09fF
+C6 Y4 2mux_2/a_n43_n29# 0.13fF
+C7 Gnd4 Y4 0.11fF
+C8 2mux_1/Y 2mux_1/a_n43_n29# 0.13fF
+C9 2mux_1/a_n32_3# d3b 0.02fF
+C10 s1 2mux_2/a_n32_3# 0.02fF
+C11 2mux_0/a_n32_3# 2mux_0/Y 0.06fF
+C12 2mux_0/a_n32_3# Vdd4 0.89fF
+C13 Gnd4 2mux_1/a_n43_n29# 0.09fF
+C14 2mux_1/Y d3b 0.02fF
+C15 2mux_0/a_n43_n29# 2mux_0/Y 0.13fF
+C16 Gnd4 2mux_1/Y 0.11fF
+C17 2mux_0/a_n32_3# s0 0.02fF
+C18 d1b 2mux_0/Y 0.02fF
+C19 Vdd4 2mux_0/a_n43_n29# 0.19fF
+C20 Y4 Vdd4 0.05fF
+C21 d1b Vdd4 0.54fF
+C22 2mux_0/a_n32_3# d0b 0.02fF
+C23 2mux_1/a_n32_3# Vdd4 0.90fF
+C24 s0 2mux_0/a_n43_n29# 0.07fF
+C25 2mux_0/a_n43_n29# d0b 0.02fF
+C26 Gnd4 d3b 0.08fF
+C27 2mux_1/a_n32_3# s0 0.02fF
+C28 Gnd4 2mux_2/a_n43_n29# 0.09fF
+C29 2mux_1/Y 2mux_0/Y 0.60fF
+C30 Vdd4 2mux_1/a_n43_n29# 0.19fF
+C31 2mux_1/a_n32_3# d2b 0.02fF
+C32 Vdd4 2mux_1/Y 0.82fF
+C33 s0 2mux_1/a_n43_n29# 0.07fF
+C34 Y4 2mux_2/a_n32_3# 0.06fF
+C35 s1 2mux_1/Y 0.06fF
+C36 d2b 2mux_1/a_n43_n29# 0.02fF
+C37 2mux_0/Y 2mux_2/a_n43_n29# 0.02fF
+C38 Gnd4 2mux_0/Y 0.32fF
+C39 Vdd4 d3b 0.54fF
+C40 Vdd4 2mux_2/a_n43_n29# 0.22fF
+C41 Gnd4 Vdd4 0.05fF
+C42 2mux_0/a_n32_3# 2mux_0/a_n43_n29# 0.55fF
+C43 2mux_0/a_n32_3# d1b 0.02fF
+C44 Gnd4 s0 0.25fF
+C45 s1 2mux_2/a_n43_n29# 0.07fF
+C46 2mux_1/Y 2mux_2/a_n32_3# 0.02fF
+C47 Gnd4 d0b 0.15fF
+C48 Gnd4 d2b 0.14fF
+C49 Vdd4 2mux_0/Y 0.58fF
+C50 2mux_2/a_n32_3# 2mux_2/a_n43_n29# 0.55fF
+C51 s1 2mux_0/Y 0.11fF
+C52 Vdd4 s0 1.32fF
+C53 s1 Vdd4 0.82fF
+C54 Vdd4 d0b 0.11fF
+C55 Y4 2mux_1/Y 0.02fF
+C56 2mux_1/a_n32_3# 2mux_1/a_n43_n29# 0.55fF
+C57 d2b Vdd4 0.11fF
+C58 Gnd4 Gnd 1.63fF
+C59 Y4 Gnd 0.37fF
+C60 2mux_2/a_n32_3# Gnd 0.04fF
+C61 2mux_2/a_n43_n29# Gnd 0.62fF
+C62 2mux_0/Y Gnd 1.37fF
+C63 s1 Gnd 0.20fF
+C64 Vdd4 Gnd 2.49fF
+C65 2mux_1/Y Gnd 0.98fF
+C66 2mux_1/a_n32_3# Gnd 0.04fF
+C67 2mux_1/a_n43_n29# Gnd 0.62fF
+C68 d2b Gnd 0.77fF
+C69 s0 Gnd 1.36fF
+C70 d3b Gnd 0.20fF
+C71 2mux_0/a_n32_3# Gnd 0.04fF
+C72 2mux_0/a_n43_n29# Gnd 0.62fF
+C73 d0b Gnd 0.79fF
+C74 d1b Gnd 0.18fF
+
+
+VDD Vdd4 0 2.5
+
+VGND Gnd4 0 0
+
+VD0 d0b 0 PULSE(0 2.5V 240ns 0 0 240ns 480ns)
+VD1 d1b 0 PULSE(0 2.5V 120ns 0 0 120ns 240ns)
+VD2 d2b 0 PULSE(0 2.5V 60ns 0 0 60ns 120ns)
+VD3 d3b 0 PULSE(0 2.5V 30ns 0 0 30ns 60ns)
+VS1 s1 0 0 PULSE(0 2.5V 60ns 0 0 60ns 120ns)
+VS0 s0 0 0 PULSE(0 2.5V 30ns 0 0 30ns 60ns)
+
+
+.OPTIONS TEMP=25 reltol=1e-6
+.tran 1NS 400NS
+
+.control
+run
+
+plot V(d0b) + 5 V(d1b) + 10 V(d2b) + 15 V(d3b) + 20 V(s0) + 25 V(s1) + 30 V(Y4)
+
+.endc
+.end

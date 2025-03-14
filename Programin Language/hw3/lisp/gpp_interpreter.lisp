@@ -1,0 +1,458 @@
+
+(setq currentLine "")
+(defvar my-array (make-array '(10)))
+;;check given command line arguments
+(defun start-tokenization ()
+  (if *args*
+    (gppinterpreter (first *args*))
+    (gppinterpreter))
+)
+
+
+(defun gppinterpreter (&optional (filename nil is_filename_supplied))
+  (if is_filename_supplied
+    (start-interpreter-from-file filename)
+    (start-interpreter-from-shell)
+  )
+)
+(defun gppinterpreter (&optional (filename nil is_filename_supplied))
+  (if is_filename_supplied
+    (start-interpreter-from-file filename)
+    (start-interpreter-from-shell)
+  )
+)
+
+;; read line by line from file and evaluate
+(defun start-interpreter-from-file (filename)
+  (open-file-to-write "parsed_lisp.txt")
+  (print "File has created.")
+  (with-open-file (stream filename :direction :input)
+    (loop for line1 = (read-line stream nil)
+      while line1 do (if (> (length line1) 0)
+                         (if (not (is-comment line1))
+                           (progn (setf currentLine line1)
+                            (tokenize-one-line line1))))
+      )
+  )
+)
+;;read from terminal until empty string and evaluate given text.
+(defun start-interpreter-from-shell ()
+ (princ "Welcome to G++ shell with Lisp, to exit enter empty string")
+ (open-file-to-write "parsed_lisp.txt")
+ (format t "~%") (princ "> ")
+  (let ((line ""))
+    (loop for newLine = (read-line)
+      while (> (length newLine) 0) do (if (not (is-comment newLine))
+                                      (progn (setf currentLine newLine)
+                                             (tokenize-one-line newLine)))
+    )
+   (print "File has created.")
+  )
+)
+;;split line from spaces and evaluate splitted tokens one by one.
+(defun tokenize-one-line (line)
+  (let ((str) (temp_end -1))
+    (loop for start_index = 0 then (+ 1 end_index)
+      as end_index = (position #\Space line :start start_index)
+      while end_index do (progn (setf str (subseq line start_index end_index))
+                                (if (> (length str) 0)
+                                (start-DFA-part1 str))
+                                (setf temp_end end_index))
+    )
+    (if (= (length line) 1) (start-DFA-part1 line)
+    (progn (setf str (subseq line (+ 1 temp_end) (length line)))
+    (if (> (length str) 0)
+      (start-DFA-part1 str))))
+))
+
+
+(defun open-file-to-write (filename)
+  (with-open-file (stream filename  :direction :output
+                                    :if-exists :supersede
+                                    :if-does-not-exist :create))
+)
+;;check for comment
+(defun is-comment (token)
+(if (> (length token) 1)
+  (if (search ";;" token :end2 2) (write-lexical-result-to-file "COMMENT" nil) nil) nil)
+
+)
+(defun resolve-given-command (command)
+  (cond ((string= command "OP_PLUS") (resolve-plus))
+    ((string= command "OP_MINUS") (resolve-minus))
+    ((string= command "OP_DIV") (resolve-div))
+    ((string= command "OP_MULT") (resolve-mult))
+    ((string= command "OP_DBLMULT") (resolve-dblmult))
+    ((string= command "OP_PLUS") (write-lexical-result-to-file "OP_OC" nil))
+    ((string= command "OP_PLUS") (write-lexical-result-to-file "OP_CC" nil))
+    ((string= command "OP_PLUS") (write-lexical-result-to-file "OP_COMMA" nil))
+    ((string= command "OP_PLUS") (write-lexical-result-to-file "OP_MULT" nil))
+    (t nil))
+)
+(defun start-DFA-part1 (token)
+   (if (= 1 (length token))
+     (let ((chr (char token 0)))
+     (cond ((is-operator chr) t)
+       ((is-digit chr) (write-lexical-result-to-file "VALUE" nil))
+       ((alpha-char-p chr) (write-lexical-result-to-file "IDENTIFIER" nil))
+       ((char= #\Newline chr) t)
+       (t (write-lexical-result-to-file chr t))))
+   (start-DFA-part2 token))
+)
+;;Apply DFA analysis steps for long tokens
+(defun start-DFA-part2 (token)
+  (cond ((is-keyword token) t)
+    ((is-comment token) t)
+    ((is-value token) t)
+    ((is-identifier token) t)
+    ((check-tabs-and-paranthesis token) t)
+    (t (write-lexical-result-to-file token t)))
+)
+
+(defun check-tabs-and-paranthesis (token)
+  (if (char= (char token 0) #\Tab)
+    (progn (remove-tabs token) t) (check-paranthesis-and-quotes token))
+)
+(defun is-identifier (token)
+  (if (is-digit (char token 0)) nil
+    (if (every #'alphanumericp token) (write-lexical-result-to-file "IDENTIFIER" nil) nil))
+)
+(defun is-value (token)
+  (let ((counter 0))
+    (loop for char across token
+      while char do (if (not (is-digit char)) (setf counter (+ 1 counter)))
+    )
+    (if (= 0 counter) (if (char= (char token 0) #\0) nil (write-lexical-result-to-file "VALUE" nil)) nil))
+)
+(defun is-operator (chr)
+  (cond ((char= chr #\+) (resolve-given-command "OP_PLUS"))
+    ((char= chr #\-) (resolve-given-command "OP_MINUS"))
+    ((char= chr #\/) (resolve-given-command "OP_DIV"))
+    ((char= chr #\() (write-lexical-result-to-file "OP_OP" nil))
+    ((char= chr #\)) (write-lexical-result-to-file "OP_CP" nil))
+    ((char= chr #\“) (write-lexical-result-to-file "OP_OC" nil))
+    ((char= chr #\”) (write-lexical-result-to-file "OP_CC" nil))
+    ((char= chr #\,) (write-lexical-result-to-file "OP_COMMA" nil))
+    ((char= chr #\*) (resolve-given-command "OP_MULT"))
+    
+    (t nil))
+
+)
+
+(defun is-digit (chr)
+(cond ((char= chr #\0) t)
+  ((char= chr #\1) t)
+  ((char= chr #\2) t)
+  ((char= chr #\3) t)
+  ((char= chr #\4) t)
+  ((char= chr #\5) t)
+  ((char= chr #\6) t)
+  ((char= chr #\7) t)
+  ((char= chr #\8) t)
+  ((char= chr #\9) t)
+  (t nil))
+)
+
+(defun write-lexical-result-to-file (lexical_result is_error)
+   (with-open-file (stream "parsed_lisp.txt" :direction :output
+                                                :if-exists :append
+                                                :if-does-not-exist :create)
+         (if is_error
+           (progn (write-sequence (format nil "SYNTAX ERROR ~a cannot be tokenized.~%" (string lexical_result)) stream)
+                  (exit))
+           1))
+ ;;(if is_error (exit))
+);;open file in append mode to write.
+(defun write-lexical-result-to-file2 (lexical_result)
+   (with-open-file (stream "parsed_lisp.txt" :direction :output
+                                                :if-exists :append
+                                                :if-does-not-exist :create)
+
+    (write-sequence (format nil "SYNTAX OK.~%Result: ~a~%" lexical_result) stream)
+   )
+)
+
+(defun write-lexical-result-to-file3 ()
+   (with-open-file (stream "parsed_lisp.txt" :direction :output
+                                                :if-exists :append
+                                                :if-does-not-exist :create)
+
+    (write-sequence (format nil "SYNTAX_ERROR Expression not recognized~%") stream)
+   )
+ (exit)
+)
+(defun is-keyword (token)
+  (cond ((string= token "and") (resolve-and))
+    ((string= token "or") (resolve-or))
+    ((string= token "not") (resolve-not))
+    ((string= token "eq") (resolve-equal))
+    ((string= token "gt") (resolve-gt))
+    ((string= token "nil") (write-lexical-result-to-file "KW_NIL" nil))
+    
+    
+    ((string= token "set") (resolve-set))
+    ((string= token "defvar") (resolve-defvar))
+    ((string= token "deffun") (write-lexical-result-to-file "DEFF" nil))
+    ((string= token "while") (write-lexical-result-to-file "KW_WHILE" nil))
+    ((string= token "if") (write-lexical-result-to-file "KW_IF" nil))
+    ((string= token "exit") (resolve-exit))
+    ((string= token "load") (write-lexical-result-to-file "KW_LOAD" nil))
+    ((string= token "disp") (resolve-disp))
+    ((string= token "true") (write-lexical-result-to-file "KW_TRUE" nil))
+    ((string= token "false") (write-lexical-result-to-file "KW_FALSE" nil))
+
+    (t nil))
+)
+
+(defun resolve-and()
+   (let ((params (split-string (remove-string "(" (remove-string ")" (remove-string "and" currentLine))))) (broken nil) (result ""))
+    (if (/= (length params) 2) (write-lexical-result-to-file3))
+    (if (not (or (string= (nth 0 params) "true") (string= (nth 0 params) "false"))) (write-lexical-result-to-file3))
+    (if (not (or (string= (nth 1 params) "true") (string= (nth 1 params) "false"))) (write-lexical-result-to-file3))
+    (if (and (string= (nth 0 params) "false") (string= (nth 0 params) "false")) (setf result "NIL"))
+    (if (and (string= (nth 0 params) "false") (string= (nth 0 params) "true")) (setf result "NIL"))
+    (if (and (string= (nth 0 params) "true") (string= (nth 0 params) "false")) (setf result "NIL"))
+    (if (and (string= (nth 0 params) "true") (string= (nth 0 params) "true")) (setf result "T"))
+
+    (write-lexical-result-to-file2 result)
+
+  )
+)
+(defun check-paranthesis-and-quotes (token)
+  (if (or (char= (char token 0) #\() (char= (char token 0) #\“)
+          (char= (char token (- (length token) 1)) #\)) (char= (char token (- (length token) 1)) #\”))
+    (progn (print-begin-paranthesis-and-quotes token) t) nil)
+)
+
+(defun resolve-plus()
+   (let ((params (split-string (remove-string "(" (remove-string ")" (remove-string "+" currentLine))))) (result 0) (broken nil))
+     (loop for element in params
+       do (if (typep (read-from-string element) 'integer )
+             (setf result (+ result (parse-integer element)))
+             (write-lexical-result-to-file3)
+            )
+     )
+     (write-lexical-result-to-file2 result)
+
+  )
+)
+(defun split-string (string &key (delimiterp #'delimiterp))
+  (loop :for beg = (position-if-not delimiterp string)
+    :then (position-if-not delimiterp string :start (1+ end))
+    :for end = (and beg (position-if delimiterp string :start beg))
+    :when beg :collect (subseq string beg end)
+    :while end)
+)
+(defun resolve-or()
+  (let ((params (split-string (remove-string "(" (remove-string ")" (remove-string "or" currentLine))))) (broken nil) (result ""))
+    (if (/= (length params) 2) (write-lexical-result-to-file3))
+    (if (not (or (string= (nth 0 params) "true") (string= (nth 0 params) "false"))) (write-lexical-result-to-file3))
+    (if (not (or (string= (nth 1 params) "true") (string= (nth 1 params) "false"))) (write-lexical-result-to-file3))
+    (if (and (string= (nth 0 params) "false") (string= (nth 0 params) "false")) (setf result "NIL"))
+    (if (and (string= (nth 0 params) "false") (string= (nth 0 params) "true")) (setf result "T"))
+    (if (and (string= (nth 0 params) "true") (string= (nth 0 params) "false")) (setf result "T"))
+    (if (and (string= (nth 0 params) "true") (string= (nth 0 params) "true")) (setf result "T"))
+
+    (write-lexical-result-to-file2 result)
+
+    )
+)
+(defun print-begin-paranthesis-and-quotes (token)
+  (let ()
+    (loop for chr across token
+      while (or (char= chr #\() (char= chr #\“)) do (progn (is-operator chr)
+                                                           (setf token (remove chr token :count 1)))
+    )
+    (check-end-paranthesis-and-quotes token (get-end-paranthesis-and-quotes token))
+  )
+)
+(defun resolve-not()
+  (let ((params (split-string (remove-string "(" (remove-string ")" (remove-string "not" currentLine))))) (broken nil) (result ""))
+    (if (/= (length params) 1) (write-lexical-result-to-file3))
+    (if (not (or (string= (nth 0 params) "true") (string= (nth 0 params) "false"))) (write-lexical-result-to-file3))
+    (if (not (string= (nth 0 params) "false")) (setf result "NIL"))
+    (if (not (string= (nth 0 params) "true")) (setf result "T"))
+
+    (write-lexical-result-to-file2 result)
+
+    )
+)
+(defun check-end-paranthesis-and-quotes (token mylist)
+ (last-control token (list-length mylist))
+ (setf mylist (reverse mylist))
+ (if (or (/= (list-length mylist) 1) (/= (length token) 1))
+ (loop for parenth in mylist
+   while parenth do (is-operator parenth)
+ ))
+)
+(defun resolve-equal()
+  (let ((params (split-string (remove-string "(" (remove-string ")" (remove-string "equal" currentLine))))) (broken nil) (result ""))
+    (if (/= (length params) 2) (write-lexical-result-to-file3))
+    (if (not (typep (read-from-string (nth 0 params)) 'integer ))
+      (write-lexical-result-to-file3)
+    )
+    (if (not (typep (read-from-string (nth 1 params)) 'integer ))
+      (write-lexical-result-to-file3)
+    )
+    (if (= (read-from-string (nth 0 params)) (read-from-string (nth 1 params))) (setf result "T") (setf result "NIL"))
+
+    (write-lexical-result-to-file2 result)
+
+    )
+)
+
+(defun resolve-gt()
+  (let ((params (split-string (remove-string "(" (remove-string ")" (remove-string "gt" currentLine))))) (broken nil) (result ""))
+    (if (/= (length params) 2) (write-lexical-result-to-file3))
+    (if (not (typep (read-from-string (nth 0 params)) 'integer ))
+      (write-lexical-result-to-file3)
+      )
+    (if (not (typep (read-from-string (nth 1 params)) 'integer ))
+      (write-lexical-result-to-file3)
+      )
+    (if (> (read-from-string (nth 0 params)) (read-from-string (nth 1 params))) (setf result "T") (setf result "NIL"))
+
+    (write-lexical-result-to-file2 result)
+
+    )
+)
+(defun resolve-exit()
+   (let ((params (split-string (remove-string "(" (remove-string ")" currentLine)))) (broken nil))
+     (if (/= (length params) 1) (write-lexical-result-to-file3))
+     (if (not (string= (nth 0 params) "exit")) (write-lexical-result-to-file3))
+     (if broken
+       (write-lexical-result-to-file3)
+       (progn (write-lexical-result-to-file2 "exiting...")
+              (exit))
+    )
+  )
+)
+(defun remove-string (rem-string full-string &key from-end (test #'eql)
+                      test-not (start1 0) end1 (start2 0) end2 key)
+  "returns full-string with rem-string removed"
+  (let ((subst-point (search rem-string full-string
+                             :from-end from-end
+                             :test test :test-not test-not
+                             :start1 start1 :end1 end1
+                             :start2 start2 :end2 end2 :key key)))
+    (if subst-point
+        (concatenate 'string
+                     (subseq full-string 0 subst-point)
+                     (subseq full-string (+ subst-point (length rem-string))))
+        full-string))
+)
+(defun resolve-list()
+  (let ((params (read-from-string (remove-string "list" currentLine))))
+     (write-lexical-result-to-file2 params)
+
+    )
+)
+(defun resolve-set()
+  (let ((params (split-string (remove-string "(" (remove-string ")" (remove-string "set" currentLine))))) (broken nil) (result ""))
+    (if (/= (length params) 2) (write-lexical-result-to-file3))
+    (if (typep (read-from-string (nth 0 params)) 'integer )
+      (write-lexical-result-to-file3)
+    )
+
+    (setf result (read-from-string (nth 1 params)))
+
+    (write-lexical-result-to-file2 result)
+
+    )
+)
+
+(defun get-end-paranthesis-and-quotes (token)
+  (setf token (reverse token))
+  (loop for chr across token
+    while (or (char= chr #\)) (char= chr #\”)) collect chr
+  )
+)
+
+(defun delimiterp (c) (or (char= c #\Space) (char= c #\,)))
+
+(defun resolve-defvar()
+  (let ((params (split-string (remove-string "(" (remove-string ")" (remove-string "defvar" currentLine))))) (broken nil) (result ""))
+    (if (/= (length params) 2) (write-lexical-result-to-file3))
+    (if (typep (read-from-string (nth 0 params)) 'integer )
+      (write-lexical-result-to-file3)
+      
+    )
+
+    (setf result (read-from-string (nth 1 params)))
+
+    (write-lexical-result-to-file2 result)
+
+    )
+)
+
+(defun resolve-minus()
+   (let ((params (split-string (remove-string "(" (remove-string ")" (remove-string "-" currentLine))))) (result 0) (broken nil) (counter 0))
+     (loop for element in params
+       do (if (typep (read-from-string element) 'integer )
+             (progn (if (= 0 counter)
+                      (setf result (- (parse-integer element) result))
+                      (setf result (- result (parse-integer element)))
+                    )
+                   (setf counter (+ 1 counter))
+              )
+             (write-lexical-result-to-file3)
+            )
+     )
+     (write-lexical-result-to-file2 result)
+
+  )
+)
+(defun resolve-div()
+  (let ((params (split-string (remove-string "(" (remove-string ")" (remove-string "/" currentLine))))) (result 0) (broken nil) (counter 0))
+    (loop for element in params
+      do (if (typep (read-from-string element) 'integer )
+           (progn (if (/= 0 counter)
+                    (setf result (/ result (parse-integer element)))
+                    (setf result (parse-integer element))
+                    )
+                  (setf counter (+ 1 counter))
+                  )
+           (write-lexical-result-to-file3)
+           )
+      )
+    (write-lexical-result-to-file2 result)
+
+  )
+)
+(defun resolve-mult()
+  (let ((params (split-string (remove-string "(" (remove-string ")" (remove-string "*" currentLine))))) (result 0) (broken nil) (counter 0))
+    (loop for element in params
+      do (if (typep (read-from-string element) 'integer )
+           (progn (if (/= 0 counter)
+                    (setf result (* result (parse-integer element)))
+                    (setf result (parse-integer element))
+                    )
+                  (setf counter (+ 1 counter))
+                  )
+           (write-lexical-result-to-file3)
+           )
+      )
+    (write-lexical-result-to-file2 result)
+
+    )
+)
+
+(defun last-control (token size)
+  (let ((end (- (length token) size)))
+       (if (= (length token) 1) (start-DFA-part1 token)
+         (start-DFA-part1 (subseq token 0 end)))
+  )
+)
+
+(defun resolve-disp()
+  (let ((params (split-string (remove-string "(" (remove-string ")" (remove-string "disp" currentLine))))) (broken nil) (result ""))
+    (if (/= (length params) 1) (write-lexical-result-to-file3))
+
+
+    (setf result (read-from-string (nth 0 params)))
+
+    (write-lexical-result-to-file2 result)
+
+    )
+)
+(start-tokenization)
